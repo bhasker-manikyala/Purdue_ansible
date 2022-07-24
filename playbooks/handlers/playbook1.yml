@@ -1,0 +1,18 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+  - name: Install httpd package
+    yum: name=httpd state=latest
+
+  - name: Start the httpd service
+    service: name=httpd state=started
+
+  - name: Copy index.html into DocumentRoot dir
+    copy: src=/home/ec2-user/index.html dest=/var/www/html
+    notify: restart httpd
+
+  handlers:
+  - name: restart httpd
+    service: name=httpd state=restarted
+  

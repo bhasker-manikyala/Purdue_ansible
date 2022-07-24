@@ -1,0 +1,28 @@
+---
+ - name: Handlers Example
+   hosts: server1
+   gather_facts: false
+   become: true
+   tasks:
+     - name: Sleep for 2 seconds
+       command: sleep 2
+       notify: run_handler
+
+     - name: Flush handlers
+       meta: flush_handlers
+
+     - name: Sleep for 5 seconds
+       command: sleep 5
+       notify: run_handler
+
+     - name: Flush handlers
+       meta: flush_handlers
+
+     - name: Sleep for 7 seconds
+       command: sleep 7
+       notify: run_handler
+
+   handlers:
+     - name: run_handler
+       debug:
+         msg: "Today's date and time: {{ '%d-%m-%Y %H:%M:%S:%s' | strftime }}"

@@ -1,0 +1,9 @@
+---
+- name: use motd role playbook
+  hosts: all
+  user: ec2-user
+  become: true
+
+  roles:
+    - role: motd
+      system_manager: admin@edureka.co

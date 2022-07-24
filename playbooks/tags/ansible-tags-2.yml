@@ -1,0 +1,21 @@
+---
+ - name: Ansible Tags
+   hosts: localhost
+   gather_facts: false
+   tasks:
+     - debug:
+         msg: "This is first task"
+       tags:
+         - first
+         - general
+     - debug:
+         msg: "This is second task"
+       tags: second
+     - debug:
+         msg: "This is third task"
+       tags:
+         - third
+         - general
+     - debug:
+         msg: "This is fourth task"
+       tags: fourth

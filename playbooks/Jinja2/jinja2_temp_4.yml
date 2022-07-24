@@ -1,0 +1,15 @@
+---
+ - name: Data Manipulation
+   hosts: localhost
+   gather_facts: false
+   vars:
+     my_list: [1,2,3,4,5,6,5,3,7,1,9]
+   tasks:
+   - name: List and Set
+     debug:
+       msg:
+        - "The highest no {{ my_list | max }}"
+        - "The lowest no is {{ my_list | min }}"
+        - "Print only unique values {{ my_list | unique }}"
+        - "Print random no {{ my_list | random }}"
+        - "Join the values of list {{ my_list | join('-') }}"

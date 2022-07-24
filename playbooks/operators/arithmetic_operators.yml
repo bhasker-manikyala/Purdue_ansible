@@ -1,0 +1,18 @@
+---
+ - name: Perform arithmetic operations
+   hosts: localhost
+   gather_facts: false
+   vars:
+     num1: 30
+     num2: 15
+   tasks:
+     - name: "Calculations"
+       debug:
+         msg:
+          - "The value of num1 is: {{ num1 }}"
+          - "The value of num2 is: {{ num2 }}"
+          - "Multiply num1 and num2: {{ num1*num2 }}"
+          - "Add num1 and num2: {{ num1+num2 }}"
+          - "Subtract num2 from num1: {{ num1-num2 }}"
+          - "Divide num1 by num2: {{ num1/num2 }}"
+          - "Check remainder: {{ num1%num2 }}"

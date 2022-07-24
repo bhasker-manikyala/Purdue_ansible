@@ -1,0 +1,12 @@
+---
+ - hosts: all
+   tasks:
+   - name: default verbose
+     debug:
+       msg:
+        - This is a test message without verbosity
+   - name: verbosity level 2
+     debug:
+       msg:
+        - This is a test message with verbosity level 2
+       verbosity: 2

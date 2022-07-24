@@ -1,0 +1,20 @@
+---
+ - name: Installing HTTPD
+   hosts: web
+   become: true
+   gather_facts: false
+   vars:
+     pkg: httpd
+   tasks:
+     - shell: rpm -q httpd | head -n 1
+       args:
+         warn: false
+       register: result
+     - fail:
+         msg: "Failed because {{ pkg }} is already installed"
+       when: "'not installed' not in result.stdout"
+     - debug:
+        msg: do we get here
+     - yum:
+        name: "{{ pkg }}"
+        state: present

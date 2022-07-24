@@ -1,0 +1,11 @@
+# --- represents this file as a playbook
+---
+# Use [space]play[space] where play is combination of hosts+tasks
+ - hosts: all
+   # Become root user
+   become: yes
+   # List of tasks to be executed
+   tasks:
+   - yum:
+       name=wget
+       state=absent

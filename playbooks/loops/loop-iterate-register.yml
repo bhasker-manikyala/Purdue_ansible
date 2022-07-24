@@ -1,0 +1,16 @@
+---
+ - name: Working with loop module
+   hosts: localhost
+   gather_facts: false
+   tasks:
+     - name: Echo the value
+       command: echo "{{ item }}"
+       loop:
+         - 1
+         - 2
+         - 3
+       register: loopresult
+
+     - name: print the results from loop
+       debug:
+         var: loopresult

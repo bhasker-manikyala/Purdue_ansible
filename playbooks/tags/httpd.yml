@@ -1,0 +1,21 @@
+---
+- hosts: web
+  become: true
+  tasks:
+  - name: Install Packages
+    yum: name="{{ item }}" state=latest
+    loop: [ 'httpd', 'vim' ]
+    tags: [ 'setup', 'sync' ]
+    
+  - name: Start the services
+    service: name=httpd state=started
+    tags: [ 'service' ]
+    
+  - name: Copy Index Page
+    copy: 
+      src: index.html
+      dest: /var/www/html/index.html
+      owner: apache
+      group: apache
+      mode: '0664'
+    tags: [ 'update', 'sync' ]

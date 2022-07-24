@@ -1,0 +1,17 @@
+---
+ - name: Install and Configure vSFTPD
+   hosts: web
+   become: yes
+   vars:
+     anonymous_enable: yes
+     local_enable: yes
+     write_enable: yes
+     anon_upload_enable: yes
+   tasks:
+     - name: install vsftp
+       yum:
+         name: vsftpd
+     - name: use Jinja2 template to configure vsftpd
+       template:
+         src: vsftpd.j2
+         dest: /etc/vsftpd/vsftpd.conf

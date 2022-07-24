@@ -1,0 +1,19 @@
+---
+ - name: Data Manipulation
+   hosts: localhost
+   gather_facts: false
+   vars:
+     path1: "/opt/custom/data/bin/script.sh"
+     path2: 'C:\Users\deeprasa\PycharmProjects\elasticsearch\test.log'
+     path3: "~/jinja2_temp_5.yml"
+   tasks:
+   - name: filters to work on pathnames
+     debug:
+       msg:
+        - "Linux Path: {{ path1 | dirname }}"
+        - "Windows Path: {{ path2 | win_dirname }}"
+        - "Linux script name: {{ path1 | basename }}"
+        - "Split the path: {{ path2 | win_splitdrive }}"
+        - "Windows Drive: {{ path2 | win_splitdrive | first }}"
+        - "Windows File name: {{ path2 | win_splitdrive | last }}"
+        - "Show Full path: {{ path3 | expanduser }}"

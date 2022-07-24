@@ -1,0 +1,15 @@
+---
+ - name: Data Manipulation
+   hosts: localhost
+   gather_facts: false
+   vars:
+     mydate1: "2020-08-14 20:00:00"
+     mydate2: "2018-08-15 21:01:40"
+   tasks:
+   - name: Date and time filters
+     debug:
+       msg:
+        - "Today's date: {{ '%d-%m-%Y' | strftime }}"
+        - "Today's date and time: {{ '%d-%m-%Y %H:%M:%S' | strftime }}"
+        - "Print seconds since {{ mydate1 }}: {{ ((mydate2 | to_datetime) - (mydate1 | to_datetime)).seconds }}"
+        - "Print days since {{ mydate2 }}: {{ ((mydate2 | to_datetime) - (mydate1 | to_datetime)).days }}"

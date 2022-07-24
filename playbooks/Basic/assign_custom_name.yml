@@ -1,0 +1,9 @@
+#!/usr/bin/ansible-playbook
+- hosts: web
+  gather_facts: false
+  tasks:
+  - name: Copy file onto web group 
+    copy: src=/tmp/demo.txt dest=~/
+  
+  - name: Create an empty file using touch method
+    file: path=/tmp/src_file.txt state=touch

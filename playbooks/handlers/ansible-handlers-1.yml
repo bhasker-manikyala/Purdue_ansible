@@ -1,0 +1,21 @@
+---
+ - name: Handlers Example
+   hosts: server1
+   gather_facts: false
+   become: true
+   tasks:
+     - name: print message-1
+       debug:
+         msg: "First Message"
+       changed_when: true
+       notify: run_handler
+     - name: print message-2
+       debug:
+         msg: "Second Message"
+       changed_when: true
+       notify: run_handler
+
+   handlers:
+     - name: run_handler
+       debug:
+         msg: "Today's date and time: {{ '%d-%m-%Y %H:%M:%S' | strftime }}"

@@ -1,0 +1,19 @@
+---
+ - name: Ansible Blocks
+   hosts: web
+   gather_facts: false
+
+   tasks:
+     - block:
+        - name: List usr directory content
+          command: "ls -l /usr/"
+
+        - name: List root partition content
+          command: "ls -l /root/"
+
+        - name: List bin directory content
+          command: "ls -l /bin/"
+       become: yes
+
+     - name: List ansible user's home directory content
+       command: "ls -l ~/"

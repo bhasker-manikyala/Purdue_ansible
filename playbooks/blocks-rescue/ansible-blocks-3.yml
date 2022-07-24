@@ -1,0 +1,22 @@
+---
+ - name: Ansible Blocks
+   hosts: web
+   gather_facts: false
+
+   tasks:
+     - block:
+        - name: List home directory content
+          command: "ls -l ~/"
+
+        - name: Failing intentionally
+          command: "ls -l /tmp"
+
+       rescue:
+        - name: Rescue block (perform recovery)
+          debug:
+            msg: "Something went wrong, cleaning up.."
+
+       always:
+        - name: This will execute always
+          debug:
+            msg: "I will execute even in failure scenario"

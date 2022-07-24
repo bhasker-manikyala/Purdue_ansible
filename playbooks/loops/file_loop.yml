@@ -1,0 +1,17 @@
+---
+- hosts: web
+  become: yes
+  become_user: ec2-user
+  become_method: sudo
+  tasks:
+  - name: Multiple files 
+    file: 
+       path: "/tmp/{{ item }}"
+       mode: 0644
+       state: directory
+
+    with_items:
+       - bhasker
+       - Sahil
+       - Gangadhar
+ 
