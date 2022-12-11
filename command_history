@@ -1,0 +1,186 @@
+30  sudo hostnamectl set-hostname controller
+   31  sudo hostnamectl set-hostname controller.example.com
+   32  exec bash
+   33  hostname
+   34  sudo vi /etc/hosts
+   35  cat /etc/hosts
+   36  sudo apt list --installed ansible
+   37  ansible --version
+   38  vi /etc/ansible/ansible.cfg
+   39  tree /etc/ansible/
+   40  ansible-inventory --list -y
+   41  ansible-inventory --list
+   42  ansible all -m ping
+   43  ansible-doc -l
+   44  ansible-doc -l | wc -l
+   45  history
+   46  ansible-doc -l
+   47  ansible-doc ping
+   48  cat /etc/ansible/hosts
+   49  ansible-inventory --list -y
+   50  grep inventory /etc/ansible/ansible.cfg
+   51  ansible-inventory --list -y
+   52  ansible all -m shell -a uptime
+   53  ansible all -m shell -a "free -m"
+   54  ansible all -m shell -a "df -hT"
+   55  ansible-inventory --list -y
+   56  grep inventory /etc/ansible/ansible.cfg
+   57  ansible all -m shell -a "df -hT"
+   58  ANSIBLE_KEEP_REMOTE_FILES=1 ansible all -m shell -a "df -hT"
+   59  grep forks /etc/ansible/ansible.cfg
+   60  vi /etc/ansible/hosts
+   61  ifconfig ens5
+   62  vi /etc/ansible/hosts
+   63  ls -l /etc/ansible/
+   64  sudo chown ansadmin:ansadmin /etc/ansible -R
+   65  ls -l /etc/ansible/
+   66  vi /etc/ansible/hosts
+   67  ansible-inventory --list -y
+   68  ansible all -m ping
+   69  ssh-copy-id 172.31.15.12
+   70  ansible all -m ping
+   71  ansible all -m shell -a "free -m" -f 1
+   72  ansible all -m shell -a "free -m" -f 2
+   73  ansible all -m shell -a "free -m" -f 1
+   74  ansible all -m shell -a "free -m" -f 2
+   75  grep forks /etc/ansible/ansible.cfg
+   76  ansible all -m shell -a "free -m" -f 1
+   77  ansible all -m shell -a "free -m" -f 2
+   78  time ansible all -m shell -a "free -m" -f 2
+   79  time ansible all -m shell -a "free -m" -f 1
+   80  cd
+   81  ls
+   82  vi backup.sh
+   83  chmod +x backup.sh
+   84  pwd
+   85  ls -l
+   86  ansible-inventory --list -y
+   87  ansible 172.31.23.241 -m copy -a "src=/home/ansadmin/backup.sh dest=/tmp"
+   88  ansible 172.31.23.241 -m copy -a "content='Hello, Welcome to Edureka' dest=/tmp/edureka.txt"
+   89  hostname
+   90  pwd
+   91  ls -l
+   92  ansible 172.31.23.241 -m fetch -a "src=/tmp/edureka.txt dest=."
+   93  pwd
+   94  ls
+   95  cd 172.31.23.241/
+   96  ls
+   97  cd tmp/
+   98  ls
+   99  cd ..
+  100  ls
+  101  pwd
+  102  ls
+  103  tree 172.31.23.241
+  104  rm -rf 172.31.23.241/
+  105  ansible-doc fetch
+  106  ansible 172.31.23.241 -m fetch -a "src=/tmp/edureka.txt dest=." flat=yes
+  107  ansible 172.31.23.241 -m fetch -a "src=/tmp/edureka.txt dest=. flat=yes"
+  108  ansible 172.31.23.241 -m fetch -a "src=/tmp/edureka.txt dest=~/ flat=yes"
+  109  pwd
+  110  ls
+  111  vi /etc/ansible/hosts
+  112  ansible 172.31.23.241 -m fetch -a "src=/tmp/edureka.txt dest=~/ flat=yes"
+  113  cat edureka.txt
+  114  ansible 172.31.23.241 -m fetch -a "src=/tmp/edureka.txt dest=~/ flat=yes"
+  115  cat edureka.txt
+  116  cksum
+  117  cksum edureka.txt
+  118  md5sum edureka.txt
+  119  ansible-config
+  120  ansible-config list
+  121  ansible-config --help
+  122  ansible-config view
+  123  ansible-config --help
+  124  history
+  125  ansible-doc file
+  126  ansible all -m file -a "path=/tmp/demo1.txt state=touch"
+  127  ls -ltrh /tmp
+  128  ansible all -m file -a "path=/tmp/demo1.txt state=touch mode=0755"
+  129  ls -ltrh /tmp
+  130  ansible all -m file -a "path=/tmp/demo1.txt state=absent"
+  131  ansible all -m file -a "path=/tmp/demo1 state=directory"
+  132  ls -ltrh /tmp
+  133  ansible all -m file -a "path=/tmp/demo1 state=absent"
+  134  ansible 172.31.23.241 -m command -a "fdisk -l"
+  135  ansible 172.31.23.241 -a "fdisk -l"
+  136  ansible-doc file
+  137  ansible 172.31.23.241 -a "fdisk -l"
+  138  ansible 172.31.23.241 -a "fdisk -l" --become
+  139  ansible 172.31.23.241 -a "fdisk -l" --become --ask-become-pass
+  140  ansible 172.31.23.241 -a "fdisk -l"
+  141  ansible 172.31.23.241 -a "fdisk -l" -b
+  142  ansible-inventory --list -y
+  143  ansible 172.31.23.241 -m package -a "name=nginx state=latest"
+  144  ansible 172.31.23.241 -m package -a "name=nginx state=latest" -b
+  145  whoami
+  146  cd .ssh
+  147  ls
+  148  history
+  149  cd
+  150  ansible all -m ping
+  151  ansible all -m ping -k
+  152  ansible all -m ping -u edureka
+  153  ansible all -m ping -u edureka -k
+  154  ansible all -m ping --user edureka --ask-pass
+  155  ansible --help
+  156  history
+  157  ansible 172.31.23.241 -m service -a "name=nginx state=started enabled=yes"
+  158  ansible 172.31.23.241 -m service -a "name=nginx state=restarted enabled=yes"
+  159  ansible 172.31.23.241 -m service -a "name=apache2 state=restarted enabled=yes"
+  160  ansible 172.31.23.241 -m service -a "name=apache2 state=restarted enabled=yes" -b
+  161  ansible 172.31.23.241 -m service -a "name=nginx state=restarted enabled=yes" -b
+  162  ansible-doc cron
+  163  history
+  164  sudo vi /etc/sudoers
+  165  ansible
+  166  ansible --help
+  167  pwd
+  168  ansible-inventory --list -y
+  169  ansible 172.31.15.12:172.31.23.241 -m ping
+  170  ansible all -m ping
+  171  ansible 172.31.23.241 -m ping
+  172  ansible node1 -m ping
+  173  vi /etc/ansible/hosts
+  174  ansible node1.example.com -m ping
+  175  ansible 172.31.23.241 -m ping
+  176  vi /etc/ansible/hosts
+  177  ansible devops all -m ping
+  178  ansible-inventory --list -y
+  179  ansible devops -m ping
+  180  ansible devops all -m ping
+  181  ansible devops -l controller.example.com -m ping
+  182  vi dev
+  183  pwd
+  184  ls -l dev
+  185  ansible -i /home/ansadmin/dev all -m ping
+  186  ansible -i /home/ansadmin/dev appserver -m ping
+  187  ansible -i /home/ansadmin/dev devops -m ping
+  188  vi dev
+  189  ansible southzone -m ping
+  190  ansible-inventory --list -y
+  191  ansible -i /home/ansadmin/dev southzone -m ping
+  192  cat dev
+  193  vi dev
+  194  rm -rf .ssh/authorized_keys
+  195  hostname
+  196  ansible -i /home/ansadmin/dev all -m command -a "whoami"
+  197  vi /home/ansadmin/dev
+  198  ansible -i /home/ansadmin/dev all -m command -a "whoami"
+  199  vi dev
+  200  ls -l dev
+  201  cat dev
+  202  ansible -i /home/ansadmin/dev all -m command -a "whoami"
+  203  cd .ssh
+  204  ls
+  205  ls -al
+  206  cd
+  207  cat dev
+  208  ansible -i /home/ansadmin/dev all -m command -a "whoami"
+  209  vi dev
+  210  ansible -i /home/ansadmin/dev all -m command -a "whoami"
+  211  ls -al .ssh/
+  212  vi dev
+  213  ansible -i /home/ansadmin/dev all -m command -a "whoami"
+  214  vi dev
+  215  ansible -i /home/ansadmin/dev all -m command -a "whoami"
