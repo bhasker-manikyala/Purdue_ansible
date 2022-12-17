@@ -1,0 +1,34 @@
+ansadmin@controller:~/playbooks$ cat apache2.yml
+---
+- hosts: web
+  become: true
+  tasks:
+  - name: Install Packages
+    package: name=apache2 update_cache=yes state=latest
+    tags: ['setup']
+
+  - name: Copy Index Page
+    copy:
+      src: index.html
+      dest: /var/www/html/
+      owner: root
+      group: root
+      mode: '0644'
+    tags: [ 'update', 'sync']
+
+  - name: Start the services
+    service: name=apache2 state=started enabled=yes
+    tags: ['service']
+
+  - name: Changing Port Number
+    lineinfile:
+            path: /etc/apache2/ports.conf
+            regexp: '^Listen'
+            insertafter: '^#Listen'
+            line: Listen 82
+    notify: Restart apache2
+    tags: [ 'update', 'sync']
+
+  handlers:
+  - name: Restart apache2
+    service: name=apache2 state=restarted
