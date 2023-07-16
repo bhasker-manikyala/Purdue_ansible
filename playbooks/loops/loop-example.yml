@@ -1,0 +1,23 @@
+tasks:
+  - name: Install Jenkins from Official website
+    package: name={{ item }} state=latest update_cache=yes
+    loop:
+      - jenkins
+      - vim
+      - screen
+      - git
+
+   user: name={{ item }} 
+    loop:
+      - edureka
+      - bhasker
+      - millendo
+      - Ernest
+      - Alcaraz
+
+   file: name={{ item }} state=directory
+    loop:
+      - file1.txt
+      - file2.txt
+      - edureka.txt
+      - bhasker.txt
