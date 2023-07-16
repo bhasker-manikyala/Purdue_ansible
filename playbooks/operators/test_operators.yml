@@ -1,0 +1,32 @@
+---
+ - name: Test operators
+   hosts: localhost
+   gather_facts: false
+   vars:
+     list1: [this, is, a, sample, text]
+     val1: "this"
+     val2: "THIS"
+     my_file_path: '/home/ansible/test_operators.yml'
+     my_dir_path: '/home/ansible'
+     my_link_path: '/tmp/dummy'
+     my_name: 'Deepak Prasad'
+     num1: 20
+   tasks:
+     - name: Validate test operators
+       debug:
+         msg:
+          - "List contains {{ list1 }}"
+          - "val1 is in list1: {{ val1 in list1 }}"
+          - "val2 is in list1: {{ val2 in list1 }}"
+          - "val2 is not in list1: {{ val2 not in list1 }}"
+          - "num1 is defined: {{ num1 is defined }}"
+          - "num2 is defined: {{ num2 is defined }}"
+          - "num2 is undefined: {{ num2 is undefined }}"
+          - "My name is lower case: {{ my_name is lower }}"
+          - "num1 is even: {{ num1 is even }}"
+          - "num1 is odd: {{ num1 is odd }}"
+          - "Does file exists: {{ my_file_path is exists }}"
+          - "Does directory exists: {{ my_dir_path is exists }}"
+          - "Is {{ my_file_path }} a file: {{ my_file_path is file }}"
+          - "Is {{ my_dir_path }} a directory: {{ my_dir_path is directory }}"
+          - "Is {{ my_link_path }} a symbolic link: {{ my_link_path is link }}"
