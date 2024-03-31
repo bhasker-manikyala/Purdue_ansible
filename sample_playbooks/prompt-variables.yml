@@ -1,0 +1,15 @@
+---
+- name: Prompt for user inputs
+  hosts: ubuntu
+  gather_facts: no
+  vars_prompt:
+     - name: user_name
+       prompt: Enter your username
+       private: no
+     - name: password
+       prompt: Enter your password
+       private: yes
+
+  tasks:
+    - debug:
+        msg: "The username is {{user_name}} and password is {{password}}"

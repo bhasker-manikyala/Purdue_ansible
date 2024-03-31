@@ -1,16 +1,16 @@
 ---
  - name: Installing HTTPD
-   hosts: web
+   hosts: redhat
    become: true
    gather_facts: false
    vars:
      pkg: httpd
    tasks:
      - shell: rpm -q httpd | head -n 1
-       args:
-         warn: false
        register: result
-       failed_when: "'not installed' not in result.stdout"
+     - set_fact:
+        result: "{{result.stdout}}"
      - yum:
-        name: "{{ pkg }}"
-        state: present
+         name: "{{pkg}}"
+         state: latest
+       failed_when: "'not installed' not in result.stdout"

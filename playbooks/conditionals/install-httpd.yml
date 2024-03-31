@@ -1,6 +1,6 @@
 ---
  - name: Installing HTTPD
-   hosts: web
+   hosts: redhat
    become: true
    gather_facts: false
    vars:

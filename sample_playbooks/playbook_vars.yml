@@ -1,0 +1,13 @@
+---
+- name: Verifying host variable
+  hosts: ubuntu
+  vars:
+    pkg: apache2
+    http_port: 80
+  tasks:
+  - debug:
+      msg: 
+        - "The HTTP Port is {{ http_port }}"
+        - "The Package name is {{ pkg }}"
+        - "The value of hostname is {{ ansible_hostname }}" 
+        - "Ansible Distribution is {{ansible_distribution_version}}"

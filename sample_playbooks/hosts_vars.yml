@@ -1,0 +1,10 @@
+---
+- name: Verifying host variable
+  hosts: ubuntu
+  tasks:
+  - name: Testing First variable (http_port)
+    debug:
+      msg: "The HTTP Port is {{ http_port }}"
+  - name: Testing Second variable (pkg)
+    debug:
+      msg: "The Package name is {{ pkg }}"

@@ -1,0 +1,10 @@
+---
+- name: Collect IPV4 address
+  hosts: ubuntu
+  tasks:
+  - debug:
+      msg:
+        - "Method-1 {{ ansible_eth0.ipv4.address }}"
+        - "Method-2 {{ ansible_eth0['ipv4']['address'] }}"
+        - "Method-3 {{ ansible_eth0['ipv4'].address }}"
+        - "Method-4 {{ ansible_eth0.ipv4['address'] }}"

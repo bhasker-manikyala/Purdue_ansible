@@ -1,0 +1,11 @@
+---
+- name: Collects variable from variables.yml file
+  hosts: ubuntu
+  vars_files: variables.yml
+  gather_facts: no
+  tasks:
+  - debug:
+      msg:
+       - "My name is {{ NAME }}"
+       - "This is {{ COURSE }} Live Training!"
+       - "We are learning about {{ CHAPTER }}"

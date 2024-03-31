@@ -1,6 +1,6 @@
 ---
  - name: Ansible Blocks
-   hosts: web
+   hosts: ubuntu
    gather_facts: false
 
    tasks:
@@ -9,7 +9,7 @@
           command: "ls -l ~/"
 
         - name: Failing intentionally
-          command: "ls -l /tmp"
+          command: "ls -l /tmp/edureka.txt"
 
        rescue:
         - name: Rescue block (perform recovery)

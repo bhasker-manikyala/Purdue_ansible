@@ -1,0 +1,7 @@
+---
+- hosts: ubuntu
+  vars:
+    username: Derick
+  tasks:
+  - debug:
+      msg: "Username={{username}}"

@@ -1,0 +1,11 @@
+---
+- name: Capture output of command
+  hosts: ubuntu
+  gather_facts: false
+  tasks:
+  - name: Collect ip address
+    command: "ifconfig eth0"
+    register: ip_addr
+  - set_fact: 
+       ip_addr: "{{ ip_addr.stdout.split('\n')[1].split()[1] }}"
+  - debug: var=ip_addr

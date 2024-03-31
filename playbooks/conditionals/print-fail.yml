@@ -1,14 +1,12 @@
 ---
  - name: Installing HTTPD
-   hosts: web
+   hosts: redhat
    become: true
    gather_facts: false
    vars:
      pkg: httpd
    tasks:
      - shell: rpm -q httpd | head -n 1
-       args:
-         warn: false
        register: result
      - fail:
          msg: "Failed because {{ pkg }} is already installed"
