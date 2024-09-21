@@ -81,6 +81,19 @@ $ cp ansible.cfg /etc/ansible
 
 
 
+ubuntu@ip-172-31-31-58:~$ ls -l /etc/ansible/ansible.cfg
+-rw-r--r-- 1 ubuntu ubuntu 40167 Sep 21 17:16 /etc/ansible/ansible.cfg
+
+ubuntu@ip-172-31-31-58:~$ ls -l /etc/ansible/hosts
+-rw-r--r-- 1 ubuntu ubuntu 1209 Sep 21 17:21 /etc/ansible/hosts
+
+ubuntu@ip-172-31-31-58:~$ ansible-inventory --list -y
+all:
+  children:
+    dev:
+      hosts:
+        172.31.28.69: {}
+        172.31.31.182: {}
 
 
 
