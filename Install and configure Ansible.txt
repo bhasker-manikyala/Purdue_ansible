@@ -1,0 +1,90 @@
+Install and configure Jenkins?
+
+Install and confiure MySQL DB?
+
+VM -- EC2 instance
+
+
+Manually?
+
+Linux bash script?
+
+Ansible Code?
+
+
+Ansible on-prem and cloud?
+
+AWS Opsworks(Chef) vs Ansible
+
+
+Ansible is developed in Python
+
+
+OS package manager(Ubuntu) --- apt-get install ansible
+
+OS Package manager(RedHat/Fedora/CentOS/Rocky/Amazon)  -- yum install ansible
+
+                                                          dnf install ansible
+
+SLES  --- zypper install ansible
+
+Mac  --- brew install ansible
+
+or
+
+pip3 install ansible
+
+for-loop script or Alternate confi
+
+SSH --- Password based
+
+        Password-less
+
+        Key based(Supports)
+
+        OTP based
+
+
+
+
+
+
+
+
+1. Install Ansible
+
+2. Setup Password-less authentication between Ansible controller to Manage Nodes
+
+$ ssh-keygen  --- It will create private and public keys
+
+$ cat /home/ubuntu/.ssh/id_ed25519.pub  -- Copy the public key
+
+
+Remote Managed1
+
+$ vi /home/ubuntu/.ssh/authorized_keys  --- Paste the public key
+
+
+Remote Managed2
+
+$ vi /home/ubuntu/.ssh/authorized_keys  --- Paste the public key
+
+
+
+3. Generating Ansible Configuration file on Controller
+
+$ sudo chown -R ubuntu:ubuntu /etc/ansible
+
+$  ansible-config init --disabled > ansible.cfg
+
+$ cp ansible.cfg /etc/ansible
+
+
+
+
+
+
+
+
+
+
