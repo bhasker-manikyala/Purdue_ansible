@@ -1,34 +1,46 @@
-ansadmin@controller:~/playbooks$ cat apache2.yml
+ubuntu@controller:~/apache2$ cat apache2.yml
 ---
-- hosts: web
-  become: true
+- hosts: node1.example.com
+  become: yes
+  vars:
+    src_path: /home/ubuntu/apache2
+    dst_path: /var/www/html
   tasks:
-  - name: Install Packages
-    package: name=apache2 update_cache=yes state=latest
-    tags: ['setup']
+  - name: Install apache2 package
+    package: name={{ item }} update_cache=yes state=latest
+    loop:
+      - apache3
+      - vim
+      - screen
+    tags: [ 'setup' ]
+    ignore_errors: yes
 
   - name: Copy Index Page
     copy:
-      src: index.html
-      dest: /var/www/html/
-      owner: root
-      group: root
-      mode: '0644'
-    tags: [ 'update', 'sync']
+     src: "{{src_path}}/index.html"
+     dest: "{{dst_path}}/index.html"
+     owner: root
+     group: root
+     mode: '0644'
+    tags: [ 'update', 'sync' ]
+
 
   - name: Start the services
     service: name=apache2 state=started enabled=yes
-    tags: ['service']
+    tags: [ 'service' ]
 
-  - name: Changing Port Number
+  - name: Changing Port number
     lineinfile:
-            path: /etc/apache2/ports.conf
-            regexp: '^Listen'
-            insertafter: '^#Listen'
-            line: Listen 82
+      path: /etc/apache2/ports.conf
+      regexp: '^Listen '
+      insertafter: '^#Listen '
+      line: Listen 80
     notify: Restart apache2
-    tags: [ 'update', 'sync']
+    tags: [ 'change', 'sync']
 
   handlers:
   - name: Restart apache2
     service: name=apache2 state=restarted
+
+
+...
