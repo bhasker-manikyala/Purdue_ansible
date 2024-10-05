@@ -1,0 +1,31 @@
+ubuntu@controller:~/playbooks/include$ cat tasks-1.yml
+---
+- name: Play 1 - Task 2
+  debug:
+    msg: Play 1 - Task 2
+
+...
+ubuntu@controller:~/playbooks/include$ cat play2.yml
+---
+- name: Play 2
+  hosts: node2.example.com
+  gather_facts: false
+  tasks:
+  - name: Play 2 - Task 1
+    debug:
+      msg: "Play 2 - Task 1"
+...
+ubuntu@controller:~/playbooks/include$ cat include_tasks.yml
+---
+- name: Working with include_tasks module
+  hosts: node1.example.com
+  gather_facts: false
+  tasks:
+  - name: Play 1 - Task 1
+    debug:
+      msg: "Play 1 - Task 1"
+  - import_tasks: tasks-1.yml
+
+- import_playbook: play2.yml
+
+...
