@@ -1,0 +1,43 @@
+$ python3 --version
+
+$ sudo apt-get install python3 python3-pip python3-boto3
+
+OR
+
+$ pip3 install boto3
+
+
+
+
+step 2:
+
+
+$ sudo mkdir /opt/ansible/inventory
+
+$ cd /opt/ansible/inventory
+
+$ vi aws_ec2.yaml
+
+---
+plugin: amazon.aws.aws_ec2
+aws_access_key: <Your AWS access key>
+aws_secrey_key: <Your AWS secret key>
+keyed_groups:
+  - key: tags
+    prefix: tag
+
+:wq
+
+
+Step 3: Open ansible.cfg file
+
+$ vi /etc/ansible/ansible.cfg
+
+[inventory]
+enable_plugins = aws_ec2
+
+:wq
+
+
+$ ansible-inventory -i /opt/ansible/inventory/aws_ec2.yaml --list 
+
