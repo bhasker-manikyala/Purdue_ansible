@@ -1,0 +1,19 @@
+How to download an ansible role from Galaxy community?
+
+Different locations for ansible roles?
+
+
+
+
+
+./roles has the highest precendence
+
+~/.ansible/roles is check after that
+
+/etc/ansible/roles is checked next
+
+
+$ ansible-galaxy init apache2
+
+
+$ ansible-galaxy install geerlingguy.java geerlingguy.jenkins
