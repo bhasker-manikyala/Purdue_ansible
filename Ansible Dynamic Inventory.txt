@@ -40,4 +40,11 @@ enable_plugins = aws_ec2
 
 
 $ ansible-inventory -i /opt/ansible/inventory/aws_ec2.yaml --list 
+$ ansible-inventory --graph
+
+Adhoc commands:
+
+$ ansible aws_ec2 -m ping
+
+$ ansible ec2-13-212-232-224.ap-southeast-1.compute.amazonaws.com -m ping
 
