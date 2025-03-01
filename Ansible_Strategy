@@ -1,0 +1,27 @@
+for x in {1..100}; do echo host$x; done > sample_inventory
+
+
+ubuntu@controller:~$ cat longcommand.sh
+#!/bin/bash
+inventory_host=$1
+printf "$inventory_host : $0 starting\n" >> taillog
+sleep10
+printf "$inventory_host : $0 finished\n" >> taillog
+
+ln -s longcommand.sh firstcommand
+ln -s longcommand.sh secondcommand
+
+ubuntu@controller:~$ cat playbook.yaml
+---
+- name: long running job
+  gather_facts: false
+  hosts: all
+  serial: 10
+  tasks:
+  - name: First task
+    command: "./firstcommand {{ inventory_hostname }}"
+    delegate_to: localhost
+
+  - name: second task
+    command: "./secondcommand {{ inventory_hostname }}"
+    delegate_to: localhost
