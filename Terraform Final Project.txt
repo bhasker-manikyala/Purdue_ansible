@@ -112,7 +112,7 @@ resource "aws_network_interface" "proj-ni" {
 
 # Attaching an elastic IP to the network interface
 resource "aws_eip" "proj-eip" {
- primary_network_interface = aws_network_interface.proj-ni.id
+ network_interface = aws_network_interface.proj-ni.id
  associate_with_private_ip = "10.0.1.10"
 }
 
@@ -122,8 +122,7 @@ resource "aws_instance" "proj-instance" {
  instance_type = "t2.micro"
  availability_zone = "ap-southeast-1a"
  key_name = "DevOps"
- network_interface {
- device_index = 0
+ primary_network_interface {
  network_interface_id = aws_network_interface.proj-ni.id
  }
  user_data = <<-EOF
@@ -138,4 +137,5 @@ resource "aws_instance" "proj-instance" {
  }
 }
 edureka@kmaster:~/terraform/project$
+
 
